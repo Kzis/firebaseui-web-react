@@ -22,9 +22,9 @@ const firebaseConfig = {
 };
 
 // Instantiate a Firebase app.
-const firebaseApp = firebase.initializeApp(firebaseConfig);
+firebase.initializeApp(firebaseConfig);
 
-class SignInScreen extends React.Component {
+class SignInScreen extends Component {
 
   // The component's Local state.
   state = {
@@ -35,10 +35,11 @@ class SignInScreen extends React.Component {
   uiConfig = {
     // Popup signin flow rather than redirect flow.
     signInFlow: 'popup',
-    // We will display Google and Facebook as auth providers.
+    // We will display Google , Facebook , Etc as auth providers.
     signInOptions: [
       firebase.auth.GoogleAuthProvider.PROVIDER_ID,
       firebase.auth.FacebookAuthProvider.PROVIDER_ID,
+      firebase.auth.TwitterAuthProvider.PROVIDER_ID,
       firebase.auth.GithubAuthProvider.PROVIDER_ID,
       firebase.auth.EmailAuthProvider.PROVIDER_ID,
     ],
@@ -78,7 +79,7 @@ class SignInScreen extends React.Component {
         <h1> with Firebase Authentication</h1>
         <p>Welcome {firebase.auth().currentUser.displayName}! You are now signed-in!</p>
           <img id="photo" className="pic" src={firebase.auth().currentUser.photoURL}/>
-        <a onClick={() => firebase.auth().signOut()}>Sign-out</a>
+        <button onClick={() => firebase.auth().signOut()}>Sign-out</button>
       </div>
     );
   }
